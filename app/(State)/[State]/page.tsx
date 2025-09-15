@@ -587,7 +587,7 @@ export default async function SubdomainPage({ params }: SubdomainPageProps) {
                 {ContentData?.neighbourhoods?.split("|").map((item: any) => (
                   <div className="" key={item}>
                     <Link
-                      href={`/neighborhoods/${
+                      href={`/${
                         item
                           .trim()
                           .toLowerCase()

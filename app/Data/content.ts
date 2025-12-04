@@ -1,4 +1,5 @@
 // DEFAULT: Import statements with enhanced error handling for all JSON content files
+import localImages from "@/local-image-paths.json"
 let aboutData: any;
 let contactPageDataJson: any;
 let contactDataJson: any;
@@ -245,356 +246,95 @@ function ensureReviewsSection(reviewsSection: any[]): any[] {
 }
 
 // DEFAULT: Helper function to ensure types data lists have complete data with comprehensive fallbacks for all typesPage.json fields
-function ensureTypesDataLists(serviceData: any): any {
-  const defaultTypesData = {
-    title: "DEFAULT: Find Your Perfect Porta Potty Type",
-    p: "DEFAULT: We offer various porta potty types to accommodate events and projects of all scales in [location]. From basic units to luxury facilities.",
-    lists: [
-      {
-        title: "DEFAULT: Standard Porta Potty in [location]",
-        shortDescription:
-          "DEFAULT: A basic porta potty ideal for construction sites, outdoor events, and temporary facilities.",
-        description:
-          "DEFAULT: <ul><li><p><strong>Capacity</strong>: Standard size</p></li><li><p><strong>Benefits</strong>:</p><ul class='list-disc pl-4'><li><p>Easy to place anywhere</p></li><li><p>Ideal for construction sites, events, and temporary needs</p></li><li><p>Cost-effective solution</p></li></ul></li></ul>",
-        h2: "DEFAULT: What Is a Standard Porta Potty in [location]",
-        p2: "DEFAULT: Planning an event or project? Our standard porta potties are perfect for basic sanitation needs in [location]. These units are clean, reliable, and perfect for outdoor events.",
-        h2Image:
-          "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-        tyesHeading:
-          "DEFAULT: When Do You Need a Standard Porta Potty in [location]?",
-        slug: "DEFAULT: standard-porta-potty",
-        imageUrl:
-          "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-        overViewHeading: "DEFAULT: Overview Of Standard Porta Potty",
-        overViewContent:
-          "DEFAULT: <ul><li><p><strong>Not Accepted</strong>:</p><ul class='list-disc pl-4'><li><p>Hazardous materials</p></li><li><p>Flammable substances</p></li><li><p>Contact us with questions about specific items.</p></li></ul></li></ul><div class='mb-2 font-semibold'>What's Included:</div><ul class='list-disc pl-4 mb-4'><li><p>Delivery and pickup</p></li><li><p>Regular cleaning and maintenance</p></li><li><p>Toilet paper and hand sanitizer</p></li></ul><div class='mb-2 font-semibold'>Unit Dimensions:</div><div class='mb-2'>Standard portable restroom</div><div class='text-sm text-gray-500'>Serves: Up to 10 people per day</div>",
-        overViewImage:
-          "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-        leftSection: {
-          title: "DEFAULT: STANDARD PORTA POTTIES",
-          description:
-            "DEFAULT: Basic needs: construction sites, outdoor events, temporary facilities",
-        },
-        rightSection: {
-          title: "DEFAULT: How to Select the Right Porta Potty Type",
-          description:
-            "DEFAULT: A porta potty can handle events and projects of all sizes. Use our guide to select the right type for your needs.",
-        },
-        comapreHeading: "DEFAULT: What Can You Use a Standard Porta Potty For?",
-        allowedHeading: "DEFAULT: Ideal For",
-        allowedItems: [
-          "DEFAULT: Construction sites and work areas",
-          "DEFAULT: Outdoor events and festivals",
-          "DEFAULT: Temporary facilities",
-          "DEFAULT: Emergency sanitation needs",
-          "DEFAULT: Camping and recreational areas",
-        ],
-        prohibitedHeading: "DEFAULT: Not Suitable For",
-        prohibitedItems: [
-          "DEFAULT: Hazardous waste disposal",
-          "DEFAULT: Chemical or flammable materials",
-          "DEFAULT: Medical waste",
-          "DEFAULT: Heavy industrial use without maintenance",
-        ],
-        idealHeading: "DEFAULT: Ideal Situations for a Standard Porta Potty:",
-        idealImage:
-          "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-        idealProjects: [
-          "DEFAULT: Construction and renovation projects",
-          "DEFAULT: Outdoor weddings and events",
-          "DEFAULT: Festivals and concerts",
-          "DEFAULT: Emergency sanitation needs",
-          "DEFAULT: Temporary work sites",
-        ],
-      },
-    ],
-  };
 
-  if (!serviceData || typeof serviceData !== "object") {
-    return defaultTypesData;
-  }
-
-  const ensuredLists =
-    Array.isArray(serviceData.lists) && serviceData.lists.length > 0
-      ? serviceData.lists.map((item: any, index: number) => {
-          const typedItem = item as any; // Handle inconsistent data structure
-          return {
-            title: getValueOrDefault(
-              typedItem?.title,
-              defaultTypesData.lists[index]?.title || "DEFAULT: Porta Potty Type",
-            ),
-            shortDescription: getValueOrDefault(
-              typedItem?.shortDescription,
-              defaultTypesData.lists[index]?.shortDescription ||
-                "DEFAULT: A versatile porta potty for various events and projects.",
-            ),
-            description: getValueOrDefault(
-              typedItem?.description,
-              defaultTypesData.lists[index]?.description ||
-                "DEFAULT: Perfect for various events and projects.",
-            ),
-            h2: getValueOrDefault(
-              typedItem?.h2,
-              defaultTypesData.lists[index]?.h2 ||
-                "DEFAULT: What Is This Porta Potty?",
-            ),
-            p2: getValueOrDefault(
-              typedItem?.p2,
-              defaultTypesData.lists[index]?.p2 ||
-                "DEFAULT: Our porta potties are perfect for events and projects in [location].",
-            ),
-            h2Image: getValueOrDefault(
-              typedItem?.h2Image,
-              defaultTypesData.lists[index]?.h2Image ||
-                "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-            ),
-            tyesHeading: getValueOrDefault(
-              typedItem?.tyesHeading,
-              defaultTypesData.lists[index]?.tyesHeading ||
-                "DEFAULT: When Do You Need This Porta Potty?",
-            ),
-            slug: getValueOrDefault(
-              typedItem?.slug,
-              defaultTypesData.lists[index]?.slug || "default-porta-potty",
-            ),
-            imageUrl: getValueOrDefault(
-              typedItem?.imageUrl,
-              defaultTypesData.lists[index]?.imageUrl ||
-                "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-            ),
-            overViewHeading: getValueOrDefault(
-              typedItem?.overViewHeading,
-              defaultTypesData.lists[index]?.overViewHeading ||
-                "DEFAULT: Overview Of This Porta Potty",
-            ),
-            overViewContent: getValueOrDefault(
-              typedItem?.overViewContent,
-              defaultTypesData.lists[index]?.overViewContent ||
-                "DEFAULT: <p>Perfect for various events and projects.</p>",
-            ),
-            overViewImage: getValueOrDefault(
-              typedItem?.overViewImage,
-              defaultTypesData.lists[index]?.overViewImage ||
-                "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-            ),
-            leftSection: (() => {
-              const defaultLeft = {
-                title: "DEFAULT: PORTA POTTIES",
-                description:
-                  "DEFAULT: Various needs: events, construction sites, temporary facilities",
-              };
-
-              if (
-                !typedItem?.leftSection ||
-                typeof typedItem.leftSection !== "object"
-              ) {
-                return defaultLeft;
-              }
-
-              return {
-                title: getValueOrDefault(
-                  typedItem.leftSection.title,
-                  defaultLeft.title,
-                ),
-                description: getValueOrDefault(
-                  typedItem.leftSection.description,
-                  defaultLeft.description,
-                ),
-              };
-            })(),
-            rightSection: (() => {
-              const defaultRight = {
-                title: "DEFAULT: How to Select the Right Porta Potty Type",
-                description:
-                  "DEFAULT: A porta potty can handle events and projects of all sizes. Use our guide to select the right type for your needs.",
-              };
-
-              if (
-                !typedItem?.rightSection ||
-                typeof typedItem.rightSection !== "object"
-              ) {
-                return defaultRight;
-              }
-
-              return {
-                title: getValueOrDefault(
-                  typedItem.rightSection.title,
-                  defaultRight.title,
-                ),
-                description: getValueOrDefault(
-                  typedItem.rightSection.description,
-                  defaultRight.description,
-                ),
-              };
-            })(),
-            comapreHeading: getValueOrDefault(
-              typedItem?.comapreHeading,
-              defaultTypesData.lists[index]?.comapreHeading ||
-                "DEFAULT: What Can You Use This Porta Potty For?",
-            ),
-            allowedHeading: getValueOrDefault(
-              typedItem?.allowedHeading,
-              defaultTypesData.lists[index]?.allowedHeading ||
-                "DEFAULT: Ideal For",
-            ),
-            allowedItems:
-              Array.isArray(typedItem?.allowedItems) &&
-              typedItem.allowedItems.length > 0
-                ? typedItem.allowedItems.map(
-                    (allowedItem: any, allowedIndex: number) =>
-                      getValueOrDefault(
-                        allowedItem,
-                        defaultTypesData.lists[index]?.allowedItems?.[
-                          allowedIndex
-                        ] || "DEFAULT: Various materials",
-                      ),
-                  )
-                : defaultTypesData.lists[index]?.allowedItems || [
-                    "DEFAULT: Various events and facilities",
-                  ],
-            prohibitedHeading: getValueOrDefault(
-              typedItem?.prohibitedHeading,
-              defaultTypesData.lists[index]?.prohibitedHeading ||
-                "DEFAULT: Not Suitable For",
-            ),
-            prohibitedItems:
-              Array.isArray(typedItem?.prohibitedItems) &&
-              typedItem.prohibitedItems.length > 0
-                ? typedItem.prohibitedItems.map(
-                    (prohibitedItem: any, prohibitedIndex: number) =>
-                      getValueOrDefault(
-                        prohibitedItem,
-                        defaultTypesData.lists[index]?.prohibitedItems?.[
-                          prohibitedIndex
-                        ] || "DEFAULT: Hazardous materials",
-                      ),
-                  )
-                : defaultTypesData.lists[index]?.prohibitedItems || [
-                    "DEFAULT: Hazardous materials",
-                  ],
-            idealHeading: getValueOrDefault(
-              typedItem?.idealHeading,
-              defaultTypesData.lists[index]?.idealHeading ||
-                "DEFAULT: Ideal Situations for This Porta Potty:",
-            ),
-            idealImage: getValueOrDefault(
-              typedItem?.idealImage,
-              defaultTypesData.lists[index]?.idealImage ||
-                "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-            ),
-            idealProjects:
-              Array.isArray(typedItem?.idealProjects) &&
-              typedItem.idealProjects.length > 0
-                ? typedItem.idealProjects.map(
-                    (idealProject: any, idealIndex: number) =>
-                      getValueOrDefault(
-                        idealProject,
-                        defaultTypesData.lists[index]?.idealProjects?.[
-                          idealIndex
-                        ] || "DEFAULT: Various events and projects",
-                      ),
-                  )
-                : defaultTypesData.lists[index]?.idealProjects || [
-                    "DEFAULT: Various events and projects",
-                  ],
-          };
-        })
-      : defaultTypesData.lists;
-
-  return {
-    title: getValueOrDefault(serviceData.title, defaultTypesData.title),
-    p: getValueOrDefault(serviceData.p, defaultTypesData.p),
-    lists: ensuredLists,
-  };
-}
 
 // DEFAULT: Helper function to ensure service data lists have complete data with comprehensive fallbacks
 function ensureServiceDataLists(serviceData: any): any {
   const defaultServiceData = {
-    title: "DEFAULT: Complete Porta Potty Rental Solutions",
+    title: "DEFAULT: Complete Dumpster Rental Solutions",
     p: "",
     lists: [
       {
-        title: "DEFAULT: Event Porta Potty Rental in [location]",
+        title: "DEFAULT: Residential Dumpster Rental in [location]",
         description:
-          "DEFAULT: Call Us At [phone]. We offer event porta potty rental in [location] for weddings, festivals, concerts, and special occasions.",
-        h2: "DEFAULT: Need Porta Potties for Your Event?",
-        p2: "DEFAULT: Event porta potty rental in [location] makes it easy to provide clean, convenient restroom facilities for your guests. Whether you're planning a wedding or hosting a festival, we've got the right facilities for the job. Call Us At [phone]",
-        h3: "DEFAULT: Perfect For All Types of Events",
-        p3: "DEFAULT: Outdoor weddings | Music festivals | Corporate events | Birthday parties | Sporting events | Community gatherings | Food festivals | Charity events",
+          "DEFAULT: Call Us At [phone]. We offer residential dumpster rental in [location] for home cleanouts, remodeling, yard waste, and more.",
+        h2: "DEFAULT: Need a Dumpster for Your Home Project?",
+        p2: "DEFAULT: Residential dumpster rental in [location] makes it easy to get rid of clutter, renovation debris, and junk without the trips to the dump. Whether you're clearing the garage or remodeling your kitchen, we've got the right size bin for the job. Call Us At [phone]",
+        h3: "DEFAULT: Perfect For Everyday Home Cleanup",
+        p3: "DEFAULT: Spring cleaning | Garage cleanouts | DIY renovations | Moving day trash | Yard debris | Storm cleanup | Furniture disposal | Basement junk removal",
         seoContent:
-          "DEFAULT: <h2>Event Porta Potty Rentals in [location]</h2><p>Our event porta potty rental service in [location] is designed to keep your celebrations clean and convenient. We deliver quality restroom facilities with flexible rental periods, perfect for events big and small. Call Us At [phone]</p>",
-        slug: "DEFAULT: event-porta-potty-rental",
+          "DEFAULT: <h2>Residential Dumpster Rentals in [location]</h2><p>Our residential dumpster rental service in [location] is designed to keep your home projects organized and stress-free. We deliver driveway-friendly bins with flexible rental periods, perfect for cleanups big and small. Call Us At [phone]</p>",
+        slug: "DEFAULT: residential-dumpster-rental",
         imageUrl:
           "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
       },
       {
-        title: "DEFAULT: Construction Porta Potty Rental in [location]",
+        title: "DEFAULT: Construction Dumpster Rental in [location]",
         description:
-          "DEFAULT: Call Us At [phone]. Dependable construction porta potty rental in [location] for contractors and job sites needing reliable restroom facilities.",
-        h2: "DEFAULT: Built for Heavy-Duty Work Sites",
-        p2: "DEFAULT: Our construction porta potty rental in [location] supports job sites, construction projects, and work areas with clean, durable restroom facilities. With fast delivery and regular maintenance, you keep workers happy and productive. Call Us At [phone]",
+          "DEFAULT: Call Us At [phone]. Dependable construction dumpster rental in [location] for contractors and job sites needing fast debris removal.",
+        h2: "DEFAULT: Built for Heavy-Duty Jobs",
+        p2: "DEFAULT: Our construction dumpster rental in [location] supports roofing projects, demolitions, remodels, and large-scale debris hauling. With fast drop-offs and pickup scheduling, you stay on track without waste getting in the way. Call Us At [phone]",
         h3: "DEFAULT: Trusted by Local Contractors",
-        p3: "DEFAULT: Construction sites | Roofing projects | Renovation work | Road work | Utility projects | Contractor jobs | Industrial sites | Infrastructure projects",
+        p3: "DEFAULT: Roofing jobs | Demolition debris | Remodeling waste | Concrete and drywall | Contractor projects | Framing scraps | Window replacements | Flooring tear-outs",
         seoContent:
-          "DEFAULT: <h2>Construction Porta Potty Rentals in [location]</h2><p>We supply reliable construction porta potty rental in [location] tailored to meet the demanding needs of local contractors and work crews. From daily maintenance to emergency service, we've got your site covered. Call Us At [phone]</p>",
-        slug: "DEFAULT: construction-porta-potty-rental",
+          "DEFAULT: <h2>Construction Dumpster Rentals in [location]</h2><p>We supply reliable construction dumpster rental in [location] tailored to meet the fast-paced demands of local contractors and crews. From demo days to final cleanup, we've got your waste covered. Call Us At [phone]</p>",
+        slug: "DEFAULT: construction-dumpster-rental",
         imageUrl:
           "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
       },
       {
-        title: "DEFAULT: Commercial Porta Potty Rental in [location]",
+        title: "DEFAULT: Commercial Dumpster Rental in [location]",
         description:
-          "DEFAULT: Call Us At [phone]. Commercial porta potty rental in [location] with flexible terms for businesses, retail spaces, and offices.",
-        h2: "DEFAULT: Keep Business Running Smoothly",
-        p2: "DEFAULT: Our commercial porta potty rental in [location] is ideal for business events, retail locations, and temporary facilities. We provide scalable solutions and dependable service with flexible scheduling. Call Us At [phone]",
+          "DEFAULT: Call Us At [phone]. Commercial dumpster rental in [location] with flexible terms for property managers, retail spaces, and offices.",
+        h2: "DEFAULT: Keep Business Moving, Trash-Free",
+        p2: "DEFAULT: Our commercial dumpster rental in [location] is ideal for business renovations, property cleanouts, and daily operations that generate extra waste. We provide scalable solutions and dependable service with flexible scheduling. Call Us At [phone]",
         h3: "DEFAULT: Ideal for Business Needs",
-        p3: "DEFAULT: Business events | Retail locations | Office buildings | Warehouses | Manufacturing facilities | Commercial properties | Temporary offices | Business relocations",
+        p3: "DEFAULT: Office cleanouts | Retail renovations | Property management | Warehouse trash | Restaurant remodels | Business relocations | Inventory disposal | Commercial events",
         seoContent:
-          "DEFAULT: <h2>Commercial Porta Potty Rentals in [location]</h2><p>For dependable commercial porta potty rental in [location], businesses trust us for on-time delivery, quality facilities, and flexible rental schedules. We help keep your business operations running smoothly. Call Us At [phone]</p>",
-        slug: "DEFAULT: commercial-porta-potty-rental",
+          "DEFAULT: <h2>Commercial Dumpster Rentals in [location]</h2><p>For dependable commercial dumpster rental in [location], businesses trust us for on-time delivery, scalable bin sizes, and flexible pickup schedules. We help keep your workspace clean and efficient. Call Us At [phone]</p>",
+        slug: "DEFAULT: commercial-dumpster-rental",
         imageUrl:
           "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
       },
       {
-        title: "DEFAULT: Luxury Porta Potty Rental in [location]",
+        title: "DEFAULT: Roll Off Dumpster Rental in [location]",
         description:
-          "DEFAULT: Call Us At [phone]. Premium luxury porta potty rental in [location] for upscale events and occasions requiring elegant restroom facilities.",
-        h2: "DEFAULT: Elegant Restroom Trailers for Special Events",
-        p2: "DEFAULT: We provide luxury porta potty rental in [location] with same-day or next-day delivery. Choose from premium restroom trailers for your upscale event—no compromising on quality or comfort. Call Us At [phone]",
-        h3: "DEFAULT: Luxury Porta Potties Work Great For",
-        p3: "DEFAULT: Upscale weddings | Corporate galas | VIP events | High-end parties | Executive functions | Premium gatherings | Luxury outdoor events | Special celebrations",
+          "DEFAULT: Call Us At [phone]. Quick and affordable roll off dumpster rental in [location] for residential and commercial projects of all sizes.",
+        h2: "DEFAULT: Easy Roll Off Dumpsters Delivered to You",
+        p2: "DEFAULT: We provide roll off dumpster rental in [location] with same-day or next-day delivery. Choose from multiple bin sizes to match your project—no overpaying, no delays. Call Us At [phone]",
+        h3: "DEFAULT: Roll Off Dumpsters Work Great For",
+        p3: "DEFAULT: Home renovations | Roofing jobs | Office cleanouts | Deck removals | Moving cleanups | Landscaping waste | Construction sites | Bulk trash disposal",
         seoContent:
-          "DEFAULT: <h2>Luxury Porta Potty Rental in [location]</h2><p>Our luxury porta potty rental service in [location] is elegant, comfortable, and built to make your event exceptional. With premium amenities and responsive service, your guests will be impressed. Call Us At [phone]</p>",
-        slug: "DEFAULT: luxury-porta-potty-rental",
+          "DEFAULT: <h2>Roll Off Dumpster Rental in [location]</h2><p>Our roll off dumpster rental service in [location] is fast, flexible, and built to make cleanup easy. With driveway-safe placement and responsive pickup, your job stays clean and on track. Call Us At [phone]</p>",
+        slug: "DEFAULT: roll-off-dumpster-rental",
         imageUrl:
           "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
       },
       {
-        title: "DEFAULT: Same Day Porta Potty Rental in [location]",
+        title: "DEFAULT: Same Day Dumpster Rental in [location]",
         description:
-          "DEFAULT: Call Us At [phone]. Get same day porta potty rental in [location] when you're on a tight deadline or last-minute event needs quick restroom facilities.",
-        h2: "DEFAULT: Need Porta Potties Fast? We've Got You",
-        p2: "DEFAULT: When time's tight, we're the go-to for same day porta potty rental in [location]. Call in the morning, get your facilities delivered that afternoon—no stress, no wait. Call Us At [phone]",
+          "DEFAULT: Call Us At [phone]. Get same day dumpster rental in [location] when you're on a tight deadline or last-minute project needs fast cleanup.",
+        h2: "DEFAULT: Need a Dumpster Fast? We've Got You",
+        p2: "DEFAULT: When time's tight, we're the go-to for same day dumpster rental in [location]. Call in the morning, get your dumpster delivered that afternoon—no stress, no wait. Call Us At [phone]",
         h3: "DEFAULT: Perfect for Urgent Situations",
-        p3: "DEFAULT: Last-minute events | Emergency facilities | Contractor deadlines | Weekend gatherings | Urgent work sites | Event changes | Emergency situations | Quick turnarounds",
+        p3: "DEFAULT: Last-minute renovations | Emergency cleanouts | Contractor delays | Weekend projects | DIY demo jobs | Tenant move-outs | Cleanup deadlines | Real estate flips",
         seoContent:
-          "DEFAULT: <h2>Same Day Porta Potty Rental in [location]</h2><p>Our same day porta potty rental in [location] helps you handle urgent situations fast. With responsive service and real-time availability, you get the facilities you need without missing a beat. Call Us At [phone]</p>",
-        slug: "DEFAULT: same-day-porta-potty-rental",
+          "DEFAULT: <h2>Same Day Dumpster Rental in [location]</h2><p>Our same day dumpster rental in [location] helps you keep projects moving fast. With responsive service and real-time availability, you get the bin you need without missing a beat. Call Us At [phone]</p>",
+        slug: "DEFAULT: same-day-dumpster-rental",
         imageUrl:
           "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
       },
       {
-        title: "DEFAULT: Festival Porta Potty Rental in [location]",
+        title: "DEFAULT: Yard Waste Dumpster Rental in [location]",
         description:
-          "DEFAULT: Call Us At [phone]. Reliable festival porta potty rental in [location] for music festivals, food events, and large outdoor gatherings.",
-        h2: "DEFAULT: Keep Your Festival Clean and Convenient",
-        p2: "DEFAULT: Our festival porta potty rental in [location] provides clean, accessible restroom facilities for large crowds and outdoor events. Keep your attendees comfortable and happy. Call Us At [phone]",
-        h3: "DEFAULT: Great For All Types of Festivals",
-        p3: "DEFAULT: Music festivals | Food festivals | Art fairs | Community events | Street festivals | Outdoor concerts | Craft shows | Cultural celebrations",
+          "DEFAULT: Call Us At [phone]. Affordable yard waste dumpster rental in [location] for landscaping projects, tree removal, and outdoor cleanups.",
+        h2: "DEFAULT: Tackling Yard Work? Let Us Handle the Haul",
+        p2: "DEFAULT: Our yard waste dumpster rental in [location] makes clearing branches, dirt, sod, and clippings easy. Keep your lawn project tidy and dump-free. Call Us At [phone]",
+        h3: "DEFAULT: Great For All Types of Yard Debris",
+        p3: "DEFAULT: Tree limbs | Bush trimmings | Grass clippings | Dirt and sod | Landscaping scraps | Garden cleanups | Storm debris | Backyard renovations",
         seoContent:
-          "DEFAULT: <h2>Festival Porta Potty Rental in [location]</h2><p>Make your festival successful with festival porta potty rental in [location]. We deliver clean facilities right to your event location and handle all maintenance and pickup. Call Us At [phone]</p>",
-        slug: "DEFAULT: festival-porta-potty-rental",
+          "DEFAULT: <h2>Yard Waste Dumpster Rental in [location]</h2><p>Clean up your yard the smart way with yard waste dumpster rental in [location]. We deliver right to your property and haul it away when you're done. Call Us At [phone]</p>",
+        slug: "DEFAULT: yard-waste-dumpster-rental",
         imageUrl:
           "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
       },
@@ -607,51 +347,55 @@ function ensureServiceDataLists(serviceData: any): any {
 
   const ensuredLists =
     Array.isArray(serviceData.lists) && serviceData.lists.length > 0
-      ? serviceData.lists.map((item: any, index: number) => ({
-          title: getValueOrDefault(
-            item?.title,
-            defaultServiceData.lists[index]?.title ||
-              "DEFAULT: Porta Potty Rental Service",
-          ),
-          description: getValueOrDefault(
-            item?.description,
-            defaultServiceData.lists[index]?.description ||
-              "DEFAULT: Professional porta potty rental service in [location].",
-          ),
-          h2: getValueOrDefault(
-            item?.h2,
-            defaultServiceData.lists[index]?.h2 ||
-              "DEFAULT: Professional Service",
-          ),
-          p2: getValueOrDefault(
-            item?.p2,
-            defaultServiceData.lists[index]?.p2 ||
-              "DEFAULT: Quality porta potty rental service in [location].",
-          ),
-          h3: getValueOrDefault(
-            item?.h3,
-            defaultServiceData.lists[index]?.h3 || "DEFAULT: Service Benefits",
-          ),
-          p3: getValueOrDefault(
-            item?.p3,
-            defaultServiceData.lists[index]?.p3 ||
-              "DEFAULT: Professional solutions for all your needs.",
-          ),
-          seoContent: getValueOrDefault(
-            item?.seoContent,
-            defaultServiceData.lists[index]?.seoContent ||
-              "DEFAULT: <h2>Professional Porta Potty Rental Service</h2><p>Quality service in [location].</p>",
-          ),
-          slug: getValueOrDefault(
-            item?.slug,
-            defaultServiceData.lists[index]?.slug || "default-service",
-          ),
-          imageUrl: getValueOrDefault(
-            item?.imageUrl,
-            defaultServiceData.lists[index]?.imageUrl ||
-              "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
-          ),
-        }))
+      ? serviceData.lists.map((item: any, index: number) => {
+          const localImageList = localImages.servicePage.lists?.[String(index) as keyof typeof localImages.servicePage.lists];
+          return {
+            title: getValueOrDefault(
+              item?.title,
+              defaultServiceData.lists[index]?.title ||
+                "DEFAULT: Dumpster Rental Service",
+            ),
+            description: getValueOrDefault(
+              item?.description,
+              defaultServiceData.lists[index]?.description ||
+                "DEFAULT: Professional dumpster rental service in [location].",
+            ),
+            h2: getValueOrDefault(
+              item?.h2,
+              defaultServiceData.lists[index]?.h2 ||
+                "DEFAULT: Professional Service",
+            ),
+            p2: getValueOrDefault(
+              item?.p2,
+              defaultServiceData.lists[index]?.p2 ||
+                "DEFAULT: Quality dumpster rental service in [location].",
+            ),
+            h3: getValueOrDefault(
+              item?.h3,
+              defaultServiceData.lists[index]?.h3 || "DEFAULT: Service Benefits",
+            ),
+            p3: getValueOrDefault(
+              item?.p3,
+              defaultServiceData.lists[index]?.p3 ||
+                "DEFAULT: Professional solutions for all your needs.",
+            ),
+            seoContent: getValueOrDefault(
+              item?.seoContent,
+              defaultServiceData.lists[index]?.seoContent ||
+                "DEFAULT: <h2>Professional Dumpster Rental Service</h2><p>Quality service in [location].</p>",
+            ),
+            slug: getValueOrDefault(
+              item?.slug,
+              defaultServiceData.lists[index]?.slug || "default-service",
+            ),
+            imageUrl: getValueOrDefault(
+              localImageList && 'imageUrl' in localImageList ? `/servicePage/${localImageList.imageUrl}` : undefined,
+              item?.imageUrl ||
+                defaultServiceData.lists[index]?.imageUrl ||
+                "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
+            ),
+          };
+        })
       : defaultServiceData.lists;
 
   return {
@@ -703,7 +447,7 @@ const contactContent: any = {
   ),
   service: getValueOrDefault(
     contactDataJson?.service,
-    "DEFAULT: Porta Potty Rental",
+    "DEFAULT: Dumpster Rental",
   ),
   location: getValueOrDefault(
     contactDataJson?.location,
@@ -711,14 +455,14 @@ const contactContent: any = {
   ),
   zipCode: getValueOrDefault(contactDataJson?.zipCode, "DEFAULT: 12345"),
   bannerImage: getValueOrDefault(
-    contactDataJson?.bannerImage,
+    `/ContactInfo/${localImages.ContactInfo.bannerImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   logoImage: getValueOrDefault(
-    contactDataJson?.logoImage,
+    `/ContactInfo/${localImages.ContactInfo.logoImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
-  favicon: getValueOrDefault(contactDataJson?.favicon, "DEFAULT: /favicon.ico"),
+  favicon: getValueOrDefault((localImages.ContactInfo as any)?.favicon ? `/ContactInfo/${(localImages.ContactInfo as any).favicon}` : undefined, "DEFAULT: /favicon.ico"),
   googleAnalytics: getValueOrDefault(
     contactDataJson?.googleAnalytics,
     "DEFAULT: GA_MEASUREMENT_ID",
@@ -755,7 +499,7 @@ const aboutContent: any = {
     "DEFAULT: Your Trusted Partner for Waste Management Solutions",
   ),
   bannerImage: getValueOrDefault(
-    aboutBannerImage,
+    `/about/${localImages.about.bannerImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -771,7 +515,7 @@ const aboutContent: any = {
     "DEFAULT: We provide affordable porta potty rental in [location] for event planners, businesses, contractors, and construction sites. Whether you're managing a wedding, hosting a festival, or running a construction project, our porta potties are ready to provide clean, convenient restroom facilities. From standard units to luxury restroom trailers, we deliver the right facilities based on your event or project needs. With flexible rental periods, same-day or next-day delivery, and no hidden fees, our service is trusted by customers who need fast and reliable solutions.",
   ),
   h2Image: getValueOrDefault(
-    h2Image,
+    `/about/${localImages.about.h2Image}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   missionSection: ensureMissionSection(missionSection),
@@ -794,15 +538,12 @@ const aboutContent: any = {
       ),
       linkText: getValueOrDefault(
         areaweserveSection.linkText,
-        "DEFAULT: Check our Porta Potty Rental service locations here.",
+        defaultAreaSection.linkText,
       ),
       link: getValueOrDefault(areaweserveSection.link, defaultAreaSection.link),
     };
   })(),
 };
-
-
-
 
 // DEFAULT: Contact Page Content with comprehensive default fallbacks
 const {
@@ -843,7 +584,7 @@ const contactPageContent: any = {
     "DEFAULT: Ready to Get Started? Contact Us Today!",
   ),
   bannerImage: getValueOrDefault(
-    contactPageBannerImage,
+    `/contact/${localImages.contact.bannerImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -856,7 +597,7 @@ const contactPageContent: any = {
   ),
   h2: getValueOrDefault(h2, "DEFAULT: Get Your Free Quote Today"),
   h2Image: getValueOrDefault(
-    contacth2Image,
+    `/contact/${localImages.contact.h2Image}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   p2: getValueOrDefault(
@@ -869,7 +610,7 @@ const contactPageContent: any = {
     "DEFAULT: Fast delivery, competitive pricing, and excellent customer service make us the top choice for porta potty rental in [location]. Call [phone] to experience the difference.",
   ),
   h3Image: getValueOrDefault(
-    h3Image,
+    `/contact/${localImages.contact.h3Image}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   ctaText: getValueOrDefault(
@@ -1020,7 +761,7 @@ const homePageContent: any = {
     "DEFAULT: Fast, Reliable, Affordable",
   ),
   bannerImage: getValueOrDefault(
-    homeBannerImage,
+    `/home/${localImages.home.bannerImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -1040,7 +781,7 @@ const homePageContent: any = {
     "DEFAULT: We provide the fastest, most reliable porta potty rental service in [location] with competitive pricing and exceptional customer service.",
   ),
   h2Image: getValueOrDefault(
-    homeh2Image,
+    `/home/${localImages.home.h2Image}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h3: getValueOrDefault(
@@ -1052,7 +793,7 @@ const homePageContent: any = {
     "DEFAULT: From outdoor events to construction projects, we have the right porta potty type for your needs in [location].",
   ),
   h3Image: getValueOrDefault(
-    homeh3Image,
+    `/home/${localImages.home.h3Image}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   mapLink: getValueOrDefault(
@@ -1279,7 +1020,7 @@ const locationPageContent: any = {
     "DEFAULT: Serving [location] and Surrounding Areas",
   ),
   bannerImage: getValueOrDefault(
-    locationBannerImage,
+    `/location/${localImages.location.bannerImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -1361,7 +1102,7 @@ const brandsContent: any = {
     "DEFAULT: Learn about our trusted porta potty rental partners and equipment. We use only the highest quality facilities for reliable service in [location].",
   ),
   bannerImage: getValueOrDefault(
-    brandsBannerImage,
+    `/ourBrand/${localImages.ourBrand.bannerImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -1374,7 +1115,7 @@ const brandsContent: any = {
     "DEFAULT: We partner with the most reliable suppliers in the industry to ensure you get quality porta potties and professional service every time in [location].",
   ),
   h2Image: getValueOrDefault(
-    brandsh2Image,
+    `/ourBrand/${localImages.ourBrand.h2Image}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   brandslist: (() => {
@@ -1488,7 +1229,7 @@ const servicePageContent: any = {
     "DEFAULT: Professional Porta Potty Rental Services",
   ),
   bannerImage: getValueOrDefault(
-    serviceBannerImage,
+    `/servicePage/${localImages.servicePage.bannerImage}`,
     "https://ik.imagekit.io/h7rza8886p/Default1.jpg?updatedAt=1757319001930",
   ),
   h1Banner: getValueOrDefault(
@@ -1865,31 +1606,5 @@ const content: {
     ContactInfo,
   ),
 };
-
-// DEFAULT: Enhanced debug logging to help troubleshoot content loading with comprehensive details
-// if (typeof window === 'undefined') {
-//   console.log('DEFAULT: Content processing summary:', {
-//     aboutContentKeys: Object.keys(content.aboutContent),
-//     contactContentKeys: Object.keys(content.contactContent),
-//     blogPostsCount: content.blogContent?.posts?.length || 0,
-//     blogCategoriesCount: Object.keys(content.blogCategoryMetaMap).length,
-//     homeContentKeys: Object.keys(content.homePageContent),
-//     locationContentKeys: Object.keys(content.locationPageContent),
-//     brandsContentKeys: Object.keys(content.brandsContent),
-//     serviceContentKeys: Object.keys(content.servicePageContent),
-//     typesContentKeys: Object.keys(content.typesJsonContent),
-//     subdomainLocationsCount: Object.keys(content.subDomainUrlContent).length,
-//     missionSectionLength: content.aboutContent?.missionSection?.length || 0,
-//     hasAreaweserveSection: !!content.aboutContent?.areaweserveSection,
-//     faqCount: content.homePageContent?.faq?.length || 0,
-//     reviewsCount: content.homePageContent?.reviews?.length || 0,
-//     whyChooseDataCount: content.homePageContent?.whyChooseSection?.whyChooseData?.length || 0,
-//     processStepsCount: content.homePageContent?.processWidget?.steps?.length || 0,
-//     affordableCardsCount: content.homePageContent?.affordableWidget?.cards?.length || 0,
-//     serviceListsCount: content.servicePageContent?.serviceData?.lists?.length || 0,
-//     typesListsCount: content.typesJsonContent?.serviceData?.lists?.length || 0,
-//     brandsListCount: content.brandsContent?.brandslist?.length || 0
-//   });
-// }
 
 export default content;

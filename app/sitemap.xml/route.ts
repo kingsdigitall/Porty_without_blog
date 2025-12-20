@@ -53,7 +53,7 @@ export async function GET() {
   const ServiceURL = ServiceSlug.map(
     (slug) => `
   <url>
-    <loc>${origin}/service/${slug}</loc>
+    <loc>${origin}/services/${slug}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -124,7 +124,7 @@ export async function GET() {
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>${origin}/service</loc>
+    <loc>${origin}/services</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
